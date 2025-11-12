@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>單元 3：Drag & Drop 測驗</title>
+<style>
+body { font-family: Arial; padding: 20px; }
+h1 { margin-bottom: 20px; }
+.container { display: flex; gap: 50px; }
+.question-area, .drag-area { flex: 1; }
+.question { margin-bottom: 20px; padding: 10px; border:1px solid #333; }
+.match-item { padding:8px 12px; margin:5px; border:1px solid #333; display:inline-block; cursor:pointer; background-color: #f2f2f2; }
+.match-zone { padding:10px; margin:5px; border:2px dashed #333; min-width:200px; min-height:40px; margin-bottom:15px; text-align: center; font-weight:bold; font-size:18px; }
+.correct { background-color: #c8f7c5; }
+.wrong { background-color: #f7c5c5; }
+.feedback { color: red; font-weight: bold; margin-left: 10px; display: none; }
+button { margin-top: 15px; padding: 8px 16px; font-size: 14px; cursor:pointer; }
+</style>
+</head>
+<body>
+<h1>單元 3：Drag & Drop 測驗</h1>
+<p>將左側概念拖到右側對應題號區，答錯會顯示正確答案與解析。</p>
+
+<div class="container">
+  <!-- 題目區 -->
+  <div class="question-area">
+    <div class="question" id="q1">1. 以下哪個是可以存放多個值的資料結構？<span class="feedback" id="f1"></span></div>
+    <div class="question" id="q2">2. 哪個是以 key-value 方式存儲資料？<span class="feedback" id="f2"></span></div>
+    <div class="question" id="q3">3. 物件中的 key-value 配對可以用於什麼？<span class="feedback" id="f3"></span></div>
+  </div>
+
+  <!-- 拖拽區，只用題號 -->
+  <div class="drag-area">
+    <div class="match-zone" id="t1">1</div>
+    <div class="match-zone" id="t2">2</div>
+    <div class="match-zone" id="t3">3</div>
+  </div>
+</div>
+
+<!-- 拖動選項 -->
+<div>
+  <div class="match-item" id="d1" data-target="t1">陣列</div>
+  <div class="match-item" id="d2" data-target="t2">物件</div>
+  <div class="match-item" id="d3" data-target="t3">物件 key-value 配對</div>
+</div>
+
+<p>
+  <button onclick="checkMatching()">檢查答案</button>
+</p>
+
+<!-- 答題後的操作按鈕 -->
+<div id="action-buttons" style="display:none;">
+  <button onclick="location.href='index.html'">返回主頁面</button>
+  <button onclick="resetTest()">再測一次</button>
+</div>
+
+<script>
+// Drag & Drop
+const items = document.querySelectorAll('.match-item');
+const zones = document.querySelectorAll('.match-zone');
+
+items.forEach(item => {
+  item.setAttribute('draggable', true);
+  item.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text', e.target.id);
+  });
+});
+
+zones.forEach(zone => {
+  zone.addEventListener('dragover', e => e.preventDefault());
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    const id = e.dataTransfer.getData('text');
+    const draggedItem = document.getElementById(id);
+    zone.appendChild(draggedItem);
+  });
+});
+
+// 答案與解析
+const answerKey = {
+  t1: { correct: "陣列", explanation: "陣列可以存放多個值，可依索引存取。" },
+  t2: { correct: "物件", explanation: "物件使用 key-value 方式存儲資料，可快速查詢。" },
+  t3: { correct: "物件 key-value 配對", explanation: "透過 key-value 可以儲存資料並快速查詢。" }
+};
+
+// 題號對應 feedback
+const questionMap = {
+  t1: "f1",
+  t2: "f2",
+  t3: "f3"
+};
+
+// 檢查答案
+function checkMatching(){
+  let anyWrong = false;
+  zones.forEach(zone => {
+    const item = zone.querySelector('.match-item');
+    const feedback = document.getElementById(questionMap[zone.id]);
+    if(item && item.dataset.target === zone.id){
+      zone.classList.add('correct');
+      zone.classList.remove('wrong');
+      feedback.style.display = "none";
+    } else {
+      zone.classList.add('wrong');
+      zone.classList.remove('correct');
+      feedback.style.display = "inline";
+      feedback.innerText = ` 正確答案: ${answerKey[zone.id].correct} (解析: ${answerKey[zone.id].explanation})`;
+      anyWrong = true;
+    }
+  });
+  // 顯示操作按鈕
+  document.getElementById('action-buttons').style.display = "block";
+}
+
+// 再測一次，重置
+function resetTest(){
+  zones.forEach(zone => {
+    zone.classList.remove('correct','wrong');
+    const item = zone.querySelector('.match-item');
+    if(item) document.body.appendChild(item); // 放回選項區
+  });
+  for(let f of Object.values(questionMap)){
+    const feedback = document.getElementById(f);
+    feedback.style.display = "none";
+  }
+  document.getElementById('action-buttons').style.display = "none";
+}
+</script>
+
+</body>
+</html>

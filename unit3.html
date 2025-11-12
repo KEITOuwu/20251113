@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>單元 3：陣列與物件</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>單元 3：陣列與物件</h1>
+
+<p>陣列和物件是用來儲存資料的工具。學會它們可以讓你管理大量資料。</p>
+
+<h2>1️⃣ 陣列 (Array)</h2>
+<p>陣列可以存放多個值：</p>
+<pre>
+let fruits = ["蘋果","香蕉","橘子"];
+console.log(fruits[0]); // 蘋果
+console.log(fruits.length); // 3
+</pre>
+
+<h2>常用操作</h2>
+<ul>
+  <li><code>push()</code> 新增元素</li>
+  <li><code>pop()</code> 移除最後一個元素</li>
+  <li><code>shift()</code> 移除第一個元素</li>
+  <li><code>unshift()</code> 新增到最前面</li>
+</ul>
+
+<h2>2️⃣ 物件 (Object)</h2>
+<p>物件可以用 key-value 方式儲存資料：</p>
+<pre>
+let person = {name:"小明", age:18, city:"台北"};
+console.log(person.name); // 小明
+console.log(person["age"]); // 18
+</pre>
+
+<h2>常用操作</h2>
+<ul>
+  <li>修改屬性：<code>person.age = 19;</code></li>
+  <li>新增屬性：<code>person.job = "學生";</code></li>
+  <li>刪除屬性：<code>delete person.city;</code></li>
+</ul>
+
+<h2>小練習</h2>
+<ul>
+  <li>建立一個陣列，存放你最喜歡的三種食物。</li>
+  <li>建立一個物件，包含名字、年齡和興趣，並印出名字。</li>
+</ul>
+
+<p><a href="index.html">返回課程首頁</a></p>
+</body>
+</html>

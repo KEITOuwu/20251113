@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>JavaScript 測驗</title>
+<style>
+body { font-family: Arial; padding: 20px; background: #f9f9f9; }
+h2 { color: #333; }
+button { margin-top: 10px; padding: 8px 12px; }
+</style>
+</head>
+<body>
+<h2>JavaScript 5 題選擇題測驗</h2>
+
+<form id="quizForm">
+  <ol>
+    <li>
+      JavaScript 宣告變數可以使用哪個關鍵字？
+      <br>
+      <input type="radio" name="q1" value="0"> function
+      <input type="radio" name="q1" value="1"> var
+      <input type="radio" name="q1" value="0"> if
+    </li>
+    <li>
+      用來建立函式的關鍵字是？
+      <br>
+      <input type="radio" name="q2" value="1"> function
+      <input type="radio" name="q2" value="0"> var
+      <input type="radio" name="q2" value="0"> loop
+    </li>
+    <li>
+      下列哪一個是迴圈？
+      <br>
+      <input type="radio" name="q3" value="1"> for
+      <input type="radio" name="q3" value="0"> if
+      <input type="radio" name="q3" value="0"> switch
+    </li>
+    <li>
+      用來宣告常數的關鍵字是？
+      <br>
+      <input type="radio" name="q4" value="1"> const
+      <input type="radio" name="q4" value="0"> var
+      <input type="radio" name="q4" value="0"> function
+    </li>
+    <li>
+      陣列的索引是從幾開始？
+      <br>
+      <input type="radio" name="q5" value="1"> 0
+      <input type="radio" name="q5" value="0"> 1
+      <input type="radio" name="q5" value="0"> -1
+    </li>
+  </ol>
+  <button type="button" onclick="checkQuiz()">提交測驗</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+function checkQuiz() {
+  const form = document.getElementById('quizForm');
+  let score = 0;
+  for (let i = 1; i <=5; i++){
+    const val = form['q'+i].value;
+    score += parseInt(val);
+  }
+  document.getElementById('result').innerText = '你的分數：' + score + '/5';
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+body {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  color: #333;
+}
+
+.question-area, .drag-area {
+  flex: 1;
+  background-color: #fdfdfd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.match-zone {
+  border: 2px dashed #2196f3;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.match-zone:hover {
+  background-color: #e3f2fd;
+  border-color: #0d47a1;
+}
+
+.match-item {
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #2196f3;
+  background-color: #bbdefb;
+  cursor: grab;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.match-item:hover {
+  background-color: #90caf9;
+  transform: scale(1.05);
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #42a5f5, #1e88e5);
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.correct {
+  background-color: #c8f7c5;
+  animation: correctFlash 0.5s;
+}
+
+.wrong {
+  background-color: #f7c5c5;
+  animation: wrongFlash 0.5s;
+}
+
+@keyframes correctFlash {
+  from { background-color: #ffffff; }
+  to { background-color: #c8f7c5; }
+}
+
+@keyframes wrongFlash {
+  from { background-color: #ffffff; }
+  to { background-color: #f7c5c5; }
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(45deg, #42a5f5, #1e88e5);
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #1e88e5, #1976d2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.3);
+}

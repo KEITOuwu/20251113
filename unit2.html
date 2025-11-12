@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>單元 2：函式與迴圈</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>單元 2：函式與迴圈</h1>
+
+<p>函式和迴圈是程式的核心，學會它們你就可以寫出有重複邏輯和功能的程式。</p>
+
+<h2>1️⃣ 函式的定義與呼叫</h2>
+<p>函式可以將程式重複的部分包裝起來，方便呼叫：</p>
+<pre>
+function greet(name){
+  console.log("Hello, " + name + "!");
+}
+
+greet("小明");
+greet("小華");
+</pre>
+
+<h2>2️⃣ for 迴圈</h2>
+<p>當你知道要執行固定次數的程式碼時，可以用 <code>for</code>：</p>
+<pre>
+for(let i=0; i<5; i++){
+  console.log("第 " + i + " 次執行");
+}
+</pre>
+
+<h2>3️⃣ while 迴圈</h2>
+<p>當條件為 true 時，就持續執行：</p>
+<pre>
+let n = 0;
+while(n < 5){
+  console.log("n = " + n);
+  n++;
+}
+</pre>
+
+<h2>4️⃣ 小練習</h2>
+<ul>
+  <li>寫一個函式計算兩個數字相加的結果。</li>
+  <li>用 for 迴圈列印 1~10 的平方。</li>
+</ul>
+
+<p><a href="index.html">返回課程首頁</a></p>
+</body>
+</html>
