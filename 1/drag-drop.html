@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Drag & Drop 示例</title>
+<style>
+  .container { display: flex; gap: 20px; margin-top: 50px; }
+  .draggable { width: 100px; height: 100px; background: #4CAF50; color: #fff; display: flex; align-items: center; justify-content: center; cursor: grab; }
+  .dropzone { width: 120px; height: 120px; border: 2px dashed #333; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+<h2>Drag & Drop 範例</h2>
+<p>將正確的程式概念拖到右邊框內：</p>
+
+<div class="container">
+  <div class="draggable" draggable="true" id="var">變數</div>
+  <div class="draggable" draggable="true" id="func">函式</div>
+  <div class="draggable" draggable="true" id="loop">迴圈</div>
+  <div class="dropzone" id="dropzone">放這裡</div>
+</div>
+
+<script>
+const draggables = document.querySelectorAll('.draggable');
+const dropzone = document.getElementById('dropzone');
+
+draggables.forEach(item => {
+  item.addEventListener('dragstart', e => {
+    e.dataTransfer.setData('text/plain', item.id);
+  });
+});
+
+dropzone.addEventListener('dragover', e => e.preventDefault());
+
+dropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  const id = e.dataTransfer.getData('text');
+  const dragged = document.getElementById(id);
+  dropzone.innerHTML = '你放入了：' + dragged.innerText;
+});
+</script>
+
+</body>
+</html>
